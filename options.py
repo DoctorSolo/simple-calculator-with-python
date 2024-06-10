@@ -28,7 +28,7 @@ class Calculator:
                 return operation
             
             except ValueError:
-                print('Error... Please enter an number: ')
+                print('Error... Please enter a number: ')
     
 
     # It's function will calculate the result
