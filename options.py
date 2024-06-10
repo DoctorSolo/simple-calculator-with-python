@@ -7,7 +7,24 @@ class Calculator:
     def __init__(self, value1:float, value2:float):
         self.value1 = value1
         self.value2 = value2
+        self.calculate()
     
+
+    # This method convert a number in operation
+    def convert_in_operation(option: int):
+        match option:
+            case 1:
+                return '+'
+            
+            case 2:
+                return '-'
+            
+            case 2:
+                return '*'
+            
+            case _:
+                return '-'
+
 
     # The historic
     def historic_met(self, result: float, option: int):
@@ -15,7 +32,7 @@ class Calculator:
         # this variable create a temporary libraly
         historic_temp = {
             'Value1'    : self.value1,
-            'Operation' : option,
+            'Operation' : self.convert_in_operation(option),
             'Value2'    : self.value2,
             'Result'    : result
         }
@@ -24,6 +41,7 @@ class Calculator:
         print (self.historic)
 
         return self.historic
+
 
     # This method will loop with an operation
     def next_operation(self, result):
