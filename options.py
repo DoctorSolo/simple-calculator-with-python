@@ -1,17 +1,18 @@
 class Calculator:
 
     # Variables
-    historic = {}
+    historic    = {}
+    result      = 0.0
 
     # The builder
     def __init__(self, value1:float, value2:float):
         self.value1 = value1
         self.value2 = value2
-        self.calculate()
+        self.result = self.calculate()
     
 
     # This method convert a number in operation
-    def convert_in_operation(option: int):
+    def convert_in_operation(self, option: int):
         match option:
             case 1:
                 return '+'
@@ -19,7 +20,7 @@ class Calculator:
             case 2:
                 return '-'
             
-            case 2:
+            case 3:
                 return '*'
             
             case _:
@@ -38,8 +39,7 @@ class Calculator:
         }
         # So this makes an update
         self.historic.update(historic_temp)
-        print (self.historic)
-
+        print(self.historic)
         return self.historic
 
 
@@ -51,7 +51,7 @@ class Calculator:
         if contin == '1':
 
             # Second result
-            second = float(int('Enter the second result: '))
+            second = float(input('Enter the second result: '))
             Calculator(result,second)
         pass
 
@@ -86,20 +86,21 @@ class Calculator:
         # it match going calcule the value
         match option:
             case 1:
-                result = (value1 + value2)
+                self.result = (value1 + value2)
             case 2:
-                result = (value1 - value2)
+                self.result = (value1 - value2)
             case 3:
-                result = (value1 * value2)
+                self.result = (value1 * value2)
             case 4:
-                result = (value1 / value2)
+                self.result = (value1 / value2)
             case _:
-                result = 0
+                self.result = 0
         
-        # after calculate do historic and return
-        self.historic(result, option)
+        # after calculate do historic
+        self.historic_met(self.result, option)
 
         # Next operation
-        self.next_operation(result)
-
-        return result
+        self.next_operation(self.result)
+        
+        #return
+        return self.result
