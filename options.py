@@ -3,21 +3,40 @@ class Calculator:
     # Variables
     historic = {}
 
-
+    # The builder
     def __init__(self, value1:float, value2:float):
         self.value1 = value1
         self.value2 = value2
     
 
     # The historic
-    def historic_met(self, result: float):
+    def historic_met(self, result: float, option: int):
+
+        # this variable create a temporary libraly
         historic_temp = {
-            'Value1': self.value1,
-            'Value2': self.value2,
-            'Result': result
+            'Value1'    : self.value1,
+            'Operation' : option,
+            'Value2'    : self.value2,
+            'Result'    : result
         }
+        # So this makes an update
         self.historic.update(historic_temp)
         print (self.historic)
+
+        return self.historic
+
+    # This method will loop with an operation
+    def next_operation(self, result):
+
+        # Ask a question
+        contin = input('Would you like continue [1]yes [any]no ? ')
+        if contin == '1':
+
+            # Second result
+            second = float(int('Enter the second result: '))
+            Calculator(result,second)
+        pass
+
 
     # It's will chacking the option, so user don't try anything incorrect.
     def check(self):
@@ -49,16 +68,20 @@ class Calculator:
         # it match going calcule the value
         match option:
             case 1:
-                result = value1 + value2
+                result = (value1 + value2)
             case 2:
-                result = value1 - value2
+                result = (value1 - value2)
             case 3:
-                result = value1 * value2
+                result = (value1 * value2)
             case 4:
-                result = value1 / value2
+                result = (value1 / value2)
             case _:
                 result = 0
         
         # after calculate do historic and return
-        self.historic(result)
+        self.historic(result, option)
+
+        # Next operation
+        self.next_operation(result)
+
         return result
