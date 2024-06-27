@@ -11,20 +11,37 @@ class Calculator:
         self.result = self.calculate()
     
 
-    # This method convert a number in operation
-    def convert_in_operation(self, option: int):
+    # It's function will calculate the result
+    def calculate(self):
+
+        # Variables
+        value1 = self.value1
+        value2 = self.value2
+
+        # Option receive a number for the operation
+        option = self.check()
+
+        # it match going calcule the value
         match option:
             case 1:
-                return '+'
-            
+                self.result = (value1 + value2)
             case 2:
-                return '-'
-            
+                self.result = (value1 - value2)
             case 3:
-                return '*'
-            
+                self.result = (value1 * value2)
+            case 4:
+                self.result = (value1 / value2)
             case _:
-                return '-'
+                self.result = 0
+        
+        # after calculate do historic
+        self.historic_met(self.result, option)
+
+        # Next operation
+        self.next_operation(self.result)
+        
+        #return
+        return self.result
 
 
     # The historic
@@ -71,36 +88,20 @@ class Calculator:
             # Case the user enter a error type, the console send a mensage
             except ValueError:
                 print('Error... Please enter a number: ')
-    
 
-    # It's function will calculate the result
-    def calculate(self):
 
-        # Variables
-        value1 = self.value1
-        value2 = self.value2
-
-        # Option receive a number for the operation
-        option = self.check()
-
-        # it match going calcule the value
+    # This method convert a number in operation
+    def convert_in_operation(self, option: int):
         match option:
             case 1:
-                self.result = (value1 + value2)
+                return '+'
+            
             case 2:
-                self.result = (value1 - value2)
+                return '-'
+            
             case 3:
-                self.result = (value1 * value2)
-            case 4:
-                self.result = (value1 / value2)
+                return '*'
+            
             case _:
-                self.result = 0
-        
-        # after calculate do historic
-        self.historic_met(self.result, option)
-
-        # Next operation
-        self.next_operation(self.result)
-        
-        #return
-        return self.result
+                return '-'
+            
