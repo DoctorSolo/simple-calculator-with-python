@@ -5,7 +5,8 @@ class Calculator:
     result      = 0.0
 
     # The builder
-    def __init__(self, value1:float, value2:float):
+    def __init__(self, value1:float, operator: bytes, value2:float):
+        self.operador = operator
         self.value1 = value1
         self.value2 = value2
         self.result = self.calculate()
@@ -19,10 +20,10 @@ class Calculator:
         value2 = self.value2
 
         # Option receive a number for the operation
-        option = self.check()
+        # option = self.check()
 
         # it match going calcule the value
-        match option:
+        match self.operador:
             case 1:
                 self.result = (value1 + value2)
             case 2:
@@ -35,10 +36,10 @@ class Calculator:
                 self.result = 0
         
         # after calculate do historic
-        self.historic_met(self.result, option)
+        self.historic_met(self.result, self.operador)
 
         # Next operation
-        self.next_operation(self.result)
+        # self.next_operation(self.result)
         
         #return
         return self.result
@@ -56,7 +57,7 @@ class Calculator:
         }
         # So this makes an update
         self.historic.update(historic_temp)
-        print(self.historic)
+        # print(self.historic)
         return self.historic
 
 
